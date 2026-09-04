@@ -1,0 +1,31 @@
+{
+  "schema_version": "devflow.agent-catalog/v1",
+  "agents": [
+    {
+      "id": "sdd-requirements-analyst",
+      "version": "1.0.0",
+      "description": "Turn a problem or feature request into a reviewable, testable specification before architecture or implementation begins.",
+      "stage": "requirements",
+      "handoffs": [],
+      "input_artifacts": [],
+      "output_artifacts": [
+        "feature-spec"
+      ],
+      "source_id": "devflow-system-builtin",
+      "upstream_path": "agents/sdd/sdd-requirements-analyst.agent.md",
+      "path": "agents/sdd/sdd-requirements-analyst.agent.md",
+      "provenance": "derived",
+      "derived_from": "DevFlow requirements-stage role",
+      "status": "approved",
+      "sha256": "6c8e30e8267a3394a41aabfebc206793f40ea7d4dd01786273925d89f402b582",
+      "permissions": {
+        "shell": false,
+        "network": false,
+        "subagents": false,
+        "repository_write": "design-docs"
+      },
+      "risk": "medium",
+      "owner_role": "devflow-maintainers"
+    }
+  ]
+}

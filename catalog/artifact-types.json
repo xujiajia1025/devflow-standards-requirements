@@ -1,0 +1,34 @@
+{
+  "schema_version": "devflow.artifact-catalog/v1",
+  "contract_sha256": "d6a911cfd17086fe3ddf664542b17d40731062de15c20418a6fff8dc96a1f378",
+  "instance_schema": {
+    "schema_version": "devflow.sdd-artifact/v1",
+    "path": "schemas/sdd-artifact.schema.json",
+    "sha256": "c6ade0e2420940b907896151598e5c2af52ac3952dd44d96b4c3f1c66a535d29"
+  },
+  "artifacts": [
+    {
+      "id": "feature-spec",
+      "version": "1.0.0",
+      "description": "Testable statement of the problem, scope, journeys, requirements, constraints and acceptance outcomes.",
+      "stage": "requirements",
+      "producer_agent": "sdd-requirements-analyst",
+      "requires": [],
+      "default_filename": "feature-spec.md",
+      "template_path": "artifacts/sdd/feature-spec.template.md",
+      "allowed_statuses": [
+        "draft",
+        "needs-clarification",
+        "accepted",
+        "blocked",
+        "superseded"
+      ],
+      "ready_statuses": [
+        "accepted"
+      ],
+      "status": "approved",
+      "sha256": "df48c01b93253ee6ab6c296995310a9352f7df037c99838e7fbd18b488e0dfa7",
+      "owner_role": "devflow-maintainers"
+    }
+  ]
+}

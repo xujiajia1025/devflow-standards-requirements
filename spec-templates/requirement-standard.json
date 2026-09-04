@@ -1,0 +1,19 @@
+{
+  "format": "devflow.spec-template/v1",
+  "id": "requirement-standard",
+  "kind": "requirement",
+  "version": "1.0.0",
+  "sections": [
+    { "id": "REQ-CONTEXT", "title": "背景与问题", "required": true, "description": "Why this work exists." },
+    { "id": "REQ-GOAL", "title": "目标与结果", "required": true, "description": "The measurable outcome." },
+    { "id": "REQ-SCOPE", "title": "范围与非范围", "required": true, "description": "What is and is not included." },
+    { "id": "REQ-ACTORS", "title": "角色与权限", "required": true, "description": "Users, actors and permissions." },
+    { "id": "REQ-FLOW", "title": "业务流程", "required": true, "description": "The expected user/system flow." },
+    { "id": "REQ-ACCEPTANCE", "title": "验收标准", "required": true, "description": "Stable, testable acceptance criteria." },
+    { "id": "REQ-CONSTRAINTS", "title": "约束条件", "required": true, "description": "Technical and organizational constraints." },
+    { "id": "REQ-RISKS", "title": "风险", "required": true, "description": "Known risks and mitigations." },
+    { "id": "REQ-OPEN-QUESTIONS", "title": "待确认问题", "required": true, "description": "Unresolved decisions." }
+  ],
+  "status": "approved",
+  "contractHash": "34099a0c1a0a9981a12d7318a2969e6ec3777e86a3e92711afe8a9b255e00092"
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "devflow.profile/v2",
+  "id": "sdd-requirements",
+  "version": "1.0.0",
+  "status": "approved",
+  "description": "Requirement-stage profile for multi-turn, cloud-governed specification discovery.",
+  "context_budget": {
+    "metadata_tokens": 3200,
+    "instruction_tokens": 14000,
+    "reference_tokens": 48000
+  },
+  "rules": [
+    "devflow-stage-context-entry"
+  ],
+  "skills": [
+    "devflow-stage-run",
+    "requirements-analysis"
+  ],
+  "agents": [
+    "sdd-requirements-analyst"
+  ]
+}

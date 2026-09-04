@@ -1,0 +1,6 @@
+DevFlow system-builtin governance fixture
+
+This file records the retained license/provenance notice for the derived
+DevFlow requirements-stage resources in this publishing fixture. The fixture
+contains original DevFlow-authored governance text and is distributed for use
+with the DevFlow Control Plane.

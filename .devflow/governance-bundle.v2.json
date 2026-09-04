@@ -1,0 +1,124 @@
+{
+  "format": "devflow.governance-bundle-manifest/v1",
+  "profile": {
+    "id": "sdd-requirements",
+    "version": "1.0.0"
+  },
+  "resources": [
+    {
+      "kind": "profile",
+      "id": "sdd-requirements",
+      "version": "1.0.0",
+      "status": "approved",
+      "path": "profiles/sdd-requirements/profile.json",
+      "contentHash": "de535632781002f55ec57c3a264fbea4e6aa82a1f38d17c5801b8e97e58e38ab",
+      "source": {
+        "revisionId": "self",
+        "path": "profiles/sdd-requirements/profile.json"
+      }
+    },
+    {
+      "kind": "rule",
+      "id": "devflow-stage-context-entry",
+      "version": "1.0.0",
+      "status": "approved",
+      "path": "rules/global/devflow-stage-context-entry.md",
+      "contentHash": "f3f147c3b374bdc3aa866ef59a9dc8a8cda4991154cbdb8c26b7ac14067203ce",
+      "enforcement": "mandatory",
+      "scope": "all-projects",
+      "risk": "high",
+      "ownerRole": "devflow-maintainers",
+      "source": {
+        "revisionId": "self",
+        "path": "rules/global/devflow-stage-context-entry.md"
+      }
+    },
+    {
+      "kind": "skill",
+      "id": "devflow-stage-run",
+      "version": "1.0.0",
+      "status": "approved",
+      "rootPath": ".dsh/skills/devflow-stage-run",
+      "entrypoint": "SKILL.md",
+      "entrypointSha256": "fd0f92b57d673b195134eda447d81ff82f2c8b73e973de4bb19b9b1eb74a1434",
+      "treeHash": "4406a63cc1c07a7855a4a3e1060702b79d3181961f1b34a85b91a47a84d3a59f",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "fd0f92b57d673b195134eda447d81ff82f2c8b73e973de4bb19b9b1eb74a1434",
+          "size": 2221,
+          "mode": 33188
+        }
+      ],
+      "source": {
+        "revisionId": "self",
+        "path": "skills/devflow-stage-run"
+      }
+    },
+    {
+      "kind": "skill",
+      "id": "requirements-analysis",
+      "version": "1.0.0",
+      "status": "approved",
+      "rootPath": ".dsh/skills/requirements-analysis",
+      "entrypoint": "SKILL.md",
+      "entrypointSha256": "55d4827320604d3a09dea9ec954f9561d2d5a99c64c094224b7a244b52983d3d",
+      "treeHash": "3baed71a03946dfa1ed2f02f37ea9b193f2fed64a5aaf841365293ed3a69a283",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "55d4827320604d3a09dea9ec954f9561d2d5a99c64c094224b7a244b52983d3d",
+          "size": 2446,
+          "mode": 33188
+        }
+      ],
+      "source": {
+        "revisionId": "self",
+        "path": "skills/requirements-analysis"
+      }
+    },
+    {
+      "kind": "agent-role",
+      "id": "sdd-requirements-analyst",
+      "version": "1.0.0",
+      "status": "approved",
+      "path": ".devflow/agents/sdd-requirements-analyst.agent.md",
+      "contentHash": "6c8e30e8267a3394a41aabfebc206793f40ea7d4dd01786273925d89f402b582",
+      "source": {
+        "revisionId": "self",
+        "path": "agents/sdd/sdd-requirements-analyst.agent.md"
+      }
+    },
+    {
+      "kind": "spec-template",
+      "id": "requirement-standard",
+      "version": "1.0.0",
+      "status": "approved",
+      "path": ".devflow/spec-templates/requirement-standard.json",
+      "contentHash": "d1971bf7dd3f7e28f99a959c0bfbb4ad88b754c1f1a80433fe2c4b50391daed6",
+      "contractHash": "34099a0c1a0a9981a12d7318a2969e6ec3777e86a3e92711afe8a9b255e00092",
+      "source": {
+        "revisionId": "self",
+        "path": "spec-templates/requirement-standard.json"
+      }
+    },
+    {
+      "kind": "artifact-template",
+      "id": "feature-spec",
+      "version": "1.0.0",
+      "status": "approved",
+      "path": ".devflow/artifacts/feature-spec.template.md",
+      "contentHash": "df48c01b93253ee6ab6c296995310a9352f7df037c99838e7fbd18b488e0dfa7",
+      "rendererVersion": "devflow.artifact-template/v2",
+      "sourceSpecTemplate": {
+        "id": "requirement-standard",
+        "version": "1.0.0",
+        "contractHash": "34099a0c1a0a9981a12d7318a2969e6ec3777e86a3e92711afe8a9b255e00092"
+      },
+      "source": {
+        "revisionId": "self",
+        "path": "artifacts/sdd/feature-spec.template.md"
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "devflow.catalog/v2",
+  "sources": [
+    {
+      "id": "devflow-system-builtin",
+      "kind": "enterprise",
+      "visibility": "internal",
+      "url": "https://github.com/xujiajia1025/devflow",
+      "commit": "24078ba09daad0d10dcee76f841d5c8ea6ba878e",
+      "license": "DevFlow system-builtin notice",
+      "license_file": "LICENSES/devflow-system-builtin.txt"
+    }
+  ],
+  "skills": [
+    {
+      "id": "devflow-stage-run",
+      "version": "1.0.0",
+      "source_id": "devflow-system-builtin",
+      "upstream_path": "skills/devflow-stage-run",
+      "path": "skills/devflow-stage-run",
+      "provenance": "derived",
+      "derived_from": "DevFlow requirements-stage governance source",
+      "status": "approved",
+      "sha256": "f09604f337ef21639c8429901fa43a96d7689e93b8e96aff4928d673ee59ae9d",
+      "permissions": {
+        "shell": false,
+        "network": false,
+        "subagents": false,
+        "repository_write": "design-docs"
+      },
+      "risk": "medium",
+      "owner_role": "devflow-maintainers"
+    },
+    {
+      "id": "requirements-analysis",
+      "version": "1.0.0",
+      "source_id": "devflow-system-builtin",
+      "upstream_path": "skills/requirements-analysis",
+      "path": "skills/requirements-analysis",
+      "provenance": "derived",
+      "derived_from": "DevFlow requirements-stage governance source",
+      "status": "approved",
+      "sha256": "ef6c53e853879ae798d39bdfc2715e91a17b5d910cc0bf65976aab4ffb8d24e3",
+      "permissions": {
+        "shell": false,
+        "network": false,
+        "subagents": false,
+        "repository_write": "design-docs"
+      },
+      "risk": "medium",
+      "owner_role": "devflow-maintainers"
+    }
+  ]
+}

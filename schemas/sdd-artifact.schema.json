@@ -1,0 +1,414 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://devflow.local/schemas/sdd-artifact-v1.json",
+  "title": "DevFlow SDD Artifact Metadata",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "artifact_id",
+    "artifact_type",
+    "feature_id",
+    "version",
+    "status",
+    "owner_role",
+    "input_artifacts",
+    "decisions",
+    "assumptions",
+    "open_questions",
+    "traceability",
+    "evidence",
+    "approval",
+    "handoff_to"
+  ],
+  "properties": {
+    "$schema": { "const": "https://devflow.local/schemas/sdd-artifact-v1.json" },
+    "schema_version": { "const": "devflow.sdd-artifact/v1" },
+    "artifact_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*/[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "artifact_type": {
+      "enum": [
+        "feature-spec",
+        "solution-design",
+        "delivery-plan",
+        "consistency-report",
+        "implementation-evidence",
+        "acceptance-report"
+      ]
+    },
+    "feature_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "version": { "type": "integer", "minimum": 1 },
+    "status": {
+      "enum": [
+        "draft",
+        "needs-clarification",
+        "ready-for-architecture",
+        "ready-for-review",
+        "accepted",
+        "approved",
+        "rejected",
+        "ready",
+        "ready-with-recorded-risks",
+        "in-progress",
+        "complete",
+        "pass",
+        "pass-with-authorized-exceptions",
+        "fail",
+        "blocked",
+        "superseded"
+      ]
+    },
+    "owner_role": {
+      "enum": [
+        "sdd-requirements-analyst",
+        "sdd-solution-architect",
+        "sdd-task-planner",
+        "sdd-consistency-reviewer",
+        "sdd-implementer",
+        "sdd-acceptance-verifier"
+      ]
+    },
+    "input_artifacts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/artifactReference" },
+      "uniqueItems": true
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/decision" }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/assumption" }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/openQuestion" }
+    },
+    "traceability": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/traceLink" }
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidence" }
+    },
+    "approval": { "$ref": "#/$defs/approval" },
+    "handoff_to": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "sdd-requirements-analyst",
+          "sdd-solution-architect",
+          "sdd-task-planner",
+          "sdd-consistency-reviewer",
+          "sdd-implementer",
+          "sdd-acceptance-verifier"
+        ]
+      },
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "artifact_type": { "const": "feature-spec" } }, "required": ["artifact_type"] },
+      "then": {
+        "properties": {
+          "owner_role": { "const": "sdd-requirements-analyst" },
+          "status": { "enum": ["draft", "needs-clarification", "ready-for-architecture", "accepted", "blocked", "superseded"] },
+          "input_artifacts": { "maxItems": 0 }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "artifact_type": { "const": "solution-design" } }, "required": ["artifact_type"] },
+      "then": {
+        "properties": {
+          "owner_role": { "const": "sdd-solution-architect" },
+          "status": { "enum": ["draft", "needs-clarification", "ready-for-review", "approved", "rejected", "blocked", "superseded"] },
+          "input_artifacts": {
+            "minItems": 1,
+            "maxItems": 1,
+            "contains": { "$ref": "#/$defs/acceptedFeatureSpec" },
+            "minContains": 1,
+            "maxContains": 1
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "artifact_type": { "const": "delivery-plan" } }, "required": ["artifact_type"] },
+      "then": {
+        "properties": {
+          "owner_role": { "const": "sdd-task-planner" },
+          "status": { "enum": ["draft", "needs-clarification", "ready-for-review", "approved", "rejected", "blocked", "superseded"] },
+          "input_artifacts": {
+            "minItems": 2,
+            "maxItems": 2,
+            "allOf": [
+              { "contains": { "$ref": "#/$defs/acceptedFeatureSpec" }, "minContains": 1, "maxContains": 1 },
+              { "contains": { "$ref": "#/$defs/approvedSolutionDesign" }, "minContains": 1, "maxContains": 1 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "artifact_type": { "const": "consistency-report" } }, "required": ["artifact_type"] },
+      "then": {
+        "properties": {
+          "owner_role": { "const": "sdd-consistency-reviewer" },
+          "status": { "enum": ["draft", "ready", "ready-with-recorded-risks", "blocked", "superseded"] },
+          "input_artifacts": {
+            "minItems": 3,
+            "maxItems": 3,
+            "allOf": [
+              { "contains": { "$ref": "#/$defs/acceptedFeatureSpec" }, "minContains": 1, "maxContains": 1 },
+              { "contains": { "$ref": "#/$defs/approvedSolutionDesign" }, "minContains": 1, "maxContains": 1 },
+              { "contains": { "$ref": "#/$defs/approvedDeliveryPlan" }, "minContains": 1, "maxContains": 1 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "artifact_type": { "const": "implementation-evidence" } }, "required": ["artifact_type"] },
+      "then": {
+        "properties": {
+          "owner_role": { "const": "sdd-implementer" },
+          "status": { "enum": ["draft", "in-progress", "complete", "blocked", "superseded"] },
+          "input_artifacts": {
+            "minItems": 4,
+            "maxItems": 4,
+            "allOf": [
+              { "contains": { "$ref": "#/$defs/acceptedFeatureSpec" }, "minContains": 1, "maxContains": 1 },
+              { "contains": { "$ref": "#/$defs/approvedSolutionDesign" }, "minContains": 1, "maxContains": 1 },
+              { "contains": { "$ref": "#/$defs/approvedDeliveryPlan" }, "minContains": 1, "maxContains": 1 },
+              { "contains": { "$ref": "#/$defs/readyConsistencyReport" }, "minContains": 1, "maxContains": 1 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "artifact_type": { "const": "acceptance-report" } }, "required": ["artifact_type"] },
+      "then": {
+        "properties": {
+          "owner_role": { "const": "sdd-acceptance-verifier" },
+          "status": { "enum": ["draft", "pass", "pass-with-authorized-exceptions", "fail", "blocked", "superseded"] },
+          "input_artifacts": {
+            "minItems": 5,
+            "maxItems": 5,
+            "allOf": [
+              { "contains": { "$ref": "#/$defs/acceptedFeatureSpec" }, "minContains": 1, "maxContains": 1 },
+              { "contains": { "$ref": "#/$defs/approvedSolutionDesign" }, "minContains": 1, "maxContains": 1 },
+              { "contains": { "$ref": "#/$defs/approvedDeliveryPlan" }, "minContains": 1, "maxContains": 1 },
+              { "contains": { "$ref": "#/$defs/readyConsistencyReport" }, "minContains": 1, "maxContains": 1 },
+              { "contains": { "$ref": "#/$defs/completeImplementationEvidence" }, "minContains": 1, "maxContains": 1 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "artifact_type": { "const": "feature-spec" },
+          "status": { "const": "accepted" }
+        },
+        "required": ["artifact_type", "status"]
+      },
+      "then": { "$ref": "#/$defs/approvedArtifact" }
+    },
+    {
+      "if": {
+        "properties": {
+          "artifact_type": { "const": "solution-design" },
+          "status": { "const": "approved" }
+        },
+        "required": ["artifact_type", "status"]
+      },
+      "then": { "$ref": "#/$defs/approvedArtifact" }
+    },
+    {
+      "if": {
+        "properties": {
+          "artifact_type": { "const": "delivery-plan" },
+          "status": { "const": "approved" }
+        },
+        "required": ["artifact_type", "status"]
+      },
+      "then": { "$ref": "#/$defs/approvedArtifact" }
+    },
+    {
+      "if": {
+        "properties": {
+          "artifact_type": { "const": "acceptance-report" },
+          "status": { "const": "pass-with-authorized-exceptions" }
+        },
+        "required": ["artifact_type", "status"]
+      },
+      "then": {
+        "properties": {
+          "approval": {
+            "properties": {
+              "status": { "const": "authorized-exception" },
+              "authority_role": {
+                "type": "string",
+                "minLength": 1,
+                "not": { "const": "sdd-acceptance-verifier" }
+              },
+              "evidence": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "artifactReference": {
+      "type": "object",
+      "required": ["artifact_id", "artifact_type", "version", "status", "sha256"],
+      "properties": {
+        "artifact_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*/[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "artifact_type": { "$ref": "#/properties/artifact_type" },
+        "version": { "type": "integer", "minimum": 1 },
+        "status": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      },
+      "additionalProperties": false
+    },
+    "acceptedFeatureSpec": {
+      "allOf": [
+        { "$ref": "#/$defs/artifactReference" },
+        {
+          "properties": {
+            "artifact_type": { "const": "feature-spec" },
+            "status": { "const": "accepted" }
+          }
+        }
+      ]
+    },
+    "approvedSolutionDesign": {
+      "allOf": [
+        { "$ref": "#/$defs/artifactReference" },
+        {
+          "properties": {
+            "artifact_type": { "const": "solution-design" },
+            "status": { "const": "approved" }
+          }
+        }
+      ]
+    },
+    "approvedDeliveryPlan": {
+      "allOf": [
+        { "$ref": "#/$defs/artifactReference" },
+        {
+          "properties": {
+            "artifact_type": { "const": "delivery-plan" },
+            "status": { "const": "approved" }
+          }
+        }
+      ]
+    },
+    "readyConsistencyReport": {
+      "allOf": [
+        { "$ref": "#/$defs/artifactReference" },
+        {
+          "properties": {
+            "artifact_type": { "const": "consistency-report" },
+            "status": { "enum": ["ready", "ready-with-recorded-risks"] }
+          }
+        }
+      ]
+    },
+    "completeImplementationEvidence": {
+      "allOf": [
+        { "$ref": "#/$defs/artifactReference" },
+        {
+          "properties": {
+            "artifact_type": { "const": "implementation-evidence" },
+            "status": { "const": "complete" }
+          }
+        }
+      ]
+    },
+    "decision": {
+      "type": "object",
+      "required": ["id", "summary", "rationale", "status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^DEC-[0-9]{3,}$" },
+        "summary": { "type": "string", "minLength": 1 },
+        "rationale": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["proposed", "accepted", "rejected", "superseded"] }
+      },
+      "additionalProperties": false
+    },
+    "assumption": {
+      "type": "object",
+      "required": ["id", "statement", "status", "validation"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^ASM-[0-9]{3,}$" },
+        "statement": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["unvalidated", "validated", "invalidated"] },
+        "validation": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "openQuestion": {
+      "type": "object",
+      "required": ["id", "question", "owner_role", "blocking"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^Q-[0-9]{3,}$" },
+        "question": { "type": "string", "minLength": 1 },
+        "owner_role": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "blocking": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "traceLink": {
+      "type": "object",
+      "required": ["source_id", "target_id", "relation"],
+      "properties": {
+        "source_id": { "type": "string", "minLength": 1 },
+        "target_id": { "type": "string", "minLength": 1 },
+        "relation": {
+          "enum": ["refines", "satisfies", "implements", "verifies", "depends-on", "conflicts-with", "supersedes"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["id", "kind", "location", "result"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^EV-[0-9]{3,}$" },
+        "kind": { "enum": ["source", "decision-record", "command", "test", "review", "runtime", "metric", "approval"] },
+        "location": { "type": "string", "minLength": 1 },
+        "result": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "approval": {
+      "type": "object",
+      "required": ["status", "authority_role", "evidence"],
+      "properties": {
+        "status": { "enum": ["not-requested", "pending", "approved", "rejected", "authorized-exception"] },
+        "authority_role": { "type": ["string", "null"], "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "evidence": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "approvedArtifact": {
+      "properties": {
+        "approval": {
+          "properties": {
+            "status": { "const": "approved" },
+            "authority_role": { "type": "string", "minLength": 1 },
+            "evidence": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

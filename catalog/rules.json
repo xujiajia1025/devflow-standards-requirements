@@ -1,0 +1,16 @@
+{
+  "schema_version": "devflow.rule-catalog/v1",
+  "rules": [
+    {
+      "id": "devflow-stage-context-entry",
+      "version": "1.0.0",
+      "path": "rules/global/devflow-stage-context-entry.md",
+      "status": "approved",
+      "enforcement": "mandatory",
+      "scope": "all-projects",
+      "risk": "high",
+      "owner_role": "devflow-maintainers",
+      "sha256": "f3f147c3b374bdc3aa866ef59a9dc8a8cda4991154cbdb8c26b7ac14067203ce"
+    }
+  ]
+}
