@@ -11,7 +11,7 @@
       "version": "1.0.0",
       "status": "approved",
       "path": "profiles/sdd-requirements/profile.json",
-      "contentHash": "de535632781002f55ec57c3a264fbea4e6aa82a1f38d17c5801b8e97e58e38ab",
+      "contentHash": "a6f7f32fd764590036bf8187e6a9b22ec1569f5074a3ffac4262e698ecec9671",
       "source": {
         "revisionId": "self",
         "path": "profiles/sdd-requirements/profile.json"
@@ -78,6 +78,28 @@
       }
     },
     {
+      "kind": "skill",
+      "id": "design-analysis",
+      "version": "1.0.0",
+      "status": "approved",
+      "rootPath": ".dsh/skills/design-analysis",
+      "entrypoint": "SKILL.md",
+      "entrypointSha256": "a2957143074c20903211b1503a7eda3909a4254baeccbf8eeec21985b7b441e8",
+      "treeHash": "e1088bc9bdcb6613e85b750d8125a02585adac32f88f33532f3551b462a10803",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sha256": "a2957143074c20903211b1503a7eda3909a4254baeccbf8eeec21985b7b441e8",
+          "size": 2554,
+          "mode": 33188
+        }
+      ],
+      "source": {
+        "revisionId": "self",
+        "path": "skills/design-analysis"
+      }
+    },
+    {
       "kind": "agent-role",
       "id": "sdd-requirements-analyst",
       "version": "1.0.0",
@@ -87,6 +109,18 @@
       "source": {
         "revisionId": "self",
         "path": "agents/sdd/sdd-requirements-analyst.agent.md"
+      }
+    },
+    {
+      "kind": "agent-role",
+      "id": "sdd-design-architect",
+      "version": "1.0.0",
+      "status": "approved",
+      "path": ".devflow/agents/sdd-design-architect.agent.md",
+      "contentHash": "9dacd27b48f1beade14b3a9cdbe070370a316ca3e21f0b842570cd70e74ea554",
+      "source": {
+        "revisionId": "self",
+        "path": "agents/sdd/sdd-design-architect.agent.md"
       }
     },
     {
@@ -118,6 +152,37 @@
       "source": {
         "revisionId": "self",
         "path": "artifacts/sdd/feature-spec.template.md"
+      }
+    },
+    {
+      "kind": "spec-template",
+      "id": "design-standard",
+      "version": "1.0.0",
+      "status": "approved",
+      "path": ".devflow/spec-templates/design-standard.json",
+      "contentHash": "4e24c8b7228695479841d626a24da2f057b12fd2ad5923c4aaa390aaf6751ac1",
+      "contractHash": "e672cd67681ca72cc7774110b36ab3107ed7c93569fdd1ef2f3bbd2e09d44ae6",
+      "source": {
+        "revisionId": "self",
+        "path": "spec-templates/design-standard.json"
+      }
+    },
+    {
+      "kind": "artifact-template",
+      "id": "solution-design",
+      "version": "1.0.0",
+      "status": "approved",
+      "path": ".devflow/artifacts/solution-design.template.md",
+      "contentHash": "bf8526ab97ddcf8125b082382cc60cb835e1248394cc551e1f23ba37c616fd19",
+      "rendererVersion": "devflow.artifact-template/v2",
+      "sourceSpecTemplate": {
+        "id": "design-standard",
+        "version": "1.0.0",
+        "contractHash": "e672cd67681ca72cc7774110b36ab3107ed7c93569fdd1ef2f3bbd2e09d44ae6"
+      },
+      "source": {
+        "revisionId": "self",
+        "path": "artifacts/sdd/solution-design.template.md"
       }
     }
   ]

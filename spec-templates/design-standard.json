@@ -1,0 +1,19 @@
+{
+  "format": "devflow.spec-template/v1",
+  "id": "design-standard",
+  "kind": "design",
+  "version": "1.0.0",
+  "sections": [
+    { "id": "DES-CONTEXT", "title": "设计上下文", "required": true, "description": "The approved requirement context." },
+    { "id": "DES-GOAL", "title": "设计目标", "required": true, "description": "What the design must achieve." },
+    { "id": "DES-ARCHITECTURE", "title": "架构方案", "required": true, "description": "Components and interactions." },
+    { "id": "DES-API-DATA", "title": "接口与数据", "required": true, "description": "Contracts, data and persistence." },
+    { "id": "DES-NFR", "title": "非功能要求", "required": true, "description": "Performance, reliability and operability." },
+    { "id": "DES-SECURITY", "title": "安全与权限", "required": true, "description": "Security boundaries and authorization." },
+    { "id": "DES-TEST", "title": "测试方案", "required": true, "description": "Verification strategy." },
+    { "id": "DES-ROLLOUT", "title": "发布与回滚", "required": true, "description": "Migration, rollout and rollback." },
+    { "id": "DES-TRACE", "title": "需求追踪", "required": true, "description": "Coverage of Requirement acceptance criteria." }
+  ],
+  "status": "approved",
+  "contractHash": "e672cd67681ca72cc7774110b36ab3107ed7c93569fdd1ef2f3bbd2e09d44ae6"
+}

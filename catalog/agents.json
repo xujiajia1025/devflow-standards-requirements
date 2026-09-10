@@ -26,6 +26,34 @@
       },
       "risk": "medium",
       "owner_role": "devflow-maintainers"
+    },
+    {
+      "id": "sdd-design-architect",
+      "version": "1.0.0",
+      "description": "Translate an accepted Requirement and repository evidence into a minimal, operable technical design.",
+      "stage": "design",
+      "handoffs": [],
+      "input_artifacts": [
+        "feature-spec"
+      ],
+      "output_artifacts": [
+        "solution-design"
+      ],
+      "source_id": "devflow-system-builtin",
+      "upstream_path": "agents/sdd/sdd-design-architect.agent.md",
+      "path": "agents/sdd/sdd-design-architect.agent.md",
+      "provenance": "derived",
+      "derived_from": "DevFlow design-stage role",
+      "status": "approved",
+      "sha256": "9dacd27b48f1beade14b3a9cdbe070370a316ca3e21f0b842570cd70e74ea554",
+      "permissions": {
+        "shell": false,
+        "network": false,
+        "subagents": false,
+        "repository_write": "design-docs"
+      },
+      "risk": "medium",
+      "owner_role": "devflow-maintainers"
     }
   ]
 }

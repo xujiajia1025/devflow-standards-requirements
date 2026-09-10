@@ -1,10 +1,10 @@
 {
   "schema_version": "devflow.artifact-catalog/v1",
-  "contract_sha256": "d6a911cfd17086fe3ddf664542b17d40731062de15c20418a6fff8dc96a1f378",
+  "contract_sha256": "59921c8896eb96f7bb9b23f8286361e23486740c7bcda81de25d10aa56af70e9",
   "instance_schema": {
     "schema_version": "devflow.sdd-artifact/v1",
     "path": "schemas/sdd-artifact.schema.json",
-    "sha256": "c6ade0e2420940b907896151598e5c2af52ac3952dd44d96b4c3f1c66a535d29"
+    "sha256": "7f06eb3ab6dff9e9648ac4fec59eb0a941a314dc3f83dfdeabd52df62c6c9329"
   },
   "artifacts": [
     {
@@ -28,6 +28,33 @@
       ],
       "status": "approved",
       "sha256": "df48c01b93253ee6ab6c296995310a9352f7df037c99838e7fbd18b488e0dfa7",
+      "owner_role": "devflow-maintainers"
+    },
+    {
+      "id": "solution-design",
+      "version": "1.0.0",
+      "description": "Technical design mapping accepted requirements to architecture, interfaces, operations, migration, rollback and verification.",
+      "stage": "design",
+      "producer_agent": "sdd-design-architect",
+      "requires": [
+        "feature-spec"
+      ],
+      "default_filename": "solution-design.md",
+      "template_path": "artifacts/sdd/solution-design.template.md",
+      "allowed_statuses": [
+        "draft",
+        "needs-clarification",
+        "ready-for-review",
+        "approved",
+        "rejected",
+        "blocked",
+        "superseded"
+      ],
+      "ready_statuses": [
+        "approved"
+      ],
+      "status": "approved",
+      "sha256": "bf8526ab97ddcf8125b082382cc60cb835e1248394cc551e1f23ba37c616fd19",
       "owner_role": "devflow-maintainers"
     }
   ]

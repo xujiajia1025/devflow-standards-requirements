@@ -3,7 +3,7 @@
   "id": "sdd-requirements",
   "version": "1.0.0",
   "status": "approved",
-  "description": "Requirement-stage profile for multi-turn, cloud-governed specification discovery.",
+  "description": "Requirement and Design profile for multi-turn, cloud-governed specification discovery.",
   "context_budget": {
     "metadata_tokens": 3200,
     "instruction_tokens": 14000,
@@ -14,9 +14,11 @@
   ],
   "skills": [
     "devflow-stage-run",
-    "requirements-analysis"
+    "requirements-analysis",
+    "design-analysis"
   ],
   "agents": [
-    "sdd-requirements-analyst"
+    "sdd-requirements-analyst",
+    "sdd-design-architect"
   ]
 }
