@@ -24,6 +24,9 @@
   "properties": {
     "$schema": { "const": "https://devflow.local/schemas/sdd-artifact-v1.json" },
     "schema_version": { "const": "devflow.sdd-artifact/v1" },
+    "template_id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "template_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "contract_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
     "artifact_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*/[a-z0-9]+(?:-[a-z0-9]+)*$" },
     "artifact_type": {
       "enum": [
