@@ -1,6 +1,6 @@
 {
   "schema_version": "devflow.artifact-catalog/v1",
-  "contract_sha256": "59921c8896eb96f7bb9b23f8286361e23486740c7bcda81de25d10aa56af70e9",
+  "contract_sha256": "6440e9680fa6b25375733c0e88794b50ae3a6170be614cf04c640e023b022708",
   "instance_schema": {
     "schema_version": "devflow.sdd-artifact/v1",
     "path": "schemas/sdd-artifact.schema.json",
