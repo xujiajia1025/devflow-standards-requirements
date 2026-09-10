@@ -1,6 +1,9 @@
 ---
 $schema: https://devflow.local/schemas/sdd-artifact-v1.json
 schema_version: devflow.sdd-artifact/v1
+template_id: design-standard
+template_version: 1.0.0
+contract_hash: e672cd67681ca72cc7774110b36ab3107ed7c93569fdd1ef2f3bbd2e09d44ae6
 artifact_id: replace-with-feature-id/solution-design
 artifact_type: solution-design
 feature_id: replace-with-feature-id
